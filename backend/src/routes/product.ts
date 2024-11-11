@@ -9,5 +9,5 @@ app.post("/new",adminOnly,singleUpload,newProduct)
 app.get("/latest",getLatestProducts)
 app.get("/categories",getAllCategories)
 app.get("/admin-products",adminOnly,getAdminProducts)
-app.route("/:id").get(getProductById).put(singleUpload,updateProduct).delete(deleteProduct)
+app.route("/:id").get(getProductById).put(adminOnly,singleUpload,updateProduct).delete(adminOnly,deleteProduct)
 export default app;
