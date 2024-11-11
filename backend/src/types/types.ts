@@ -6,14 +6,12 @@ export interface NewUserRequestBody{
     _id:string,
     name:string,
     email:string,
-    photo:string,
     gender:"male"|"female",
     dob:Date,
 }
 export interface NewProductRequestBody{
     category:string,
     name:string,
-    photo:string,
     stock:number,
     price:number,
 }

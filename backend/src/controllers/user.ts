@@ -4,13 +4,15 @@ import { NewUserRequestBody } from "../types/types.js";
 import { TryCatch } from "../middlewares/error.js";
 import ErrorHandler from "../utils/utility-class.js";
 
+
 export const newUser = TryCatch(
   async (
     req: Request<{}, {}, NewUserRequestBody>,
     res: Response,
     next: NextFunction
-  )=>{
-    const { name, email, photo, gender, _id, dob } = req.body;
+  ) => {
+    const { name, email,gender, _id, dob } = req.body;
+
     let user = await User.findById(_id);
 
     if (user)
@@ -19,13 +21,13 @@ export const newUser = TryCatch(
         message: `Welcome, ${user.name}`,
       });
 
-    if (!_id || !name || !email || !photo || !gender || !dob)
+    if (!_id || !name || !email || !gender || !dob)
       return next(new ErrorHandler("Please add all fields", 400));
-
+const photo=req.file
     user = await User.create({
       name,
       email,
-      photo,
+      photo:photo?.path,
       gender,
       _id,
       dob: new Date(dob),

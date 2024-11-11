@@ -32,5 +32,6 @@ app.get("/", (req, res) => {
 // User routes
 app.use("/api/v1/user", userRoute);
 app.use("/api/v1/product",productRoute);
+app.use("/uploads",express.static("uploads"))
 // Error handling middleware
 app.use(errorMiddleware);
