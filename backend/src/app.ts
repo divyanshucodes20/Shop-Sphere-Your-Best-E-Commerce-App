@@ -1,6 +1,7 @@
 import express from "express";
 import dotenv from "dotenv";
 import userRoute from "./routes/user.js";
+import productRoute from "./routes/product.js"
 import connectDB from "./db/index.js";
 import { errorMiddleware } from "./middlewares/error.js";
 
@@ -30,6 +31,6 @@ app.get("/", (req, res) => {
 
 // User routes
 app.use("/api/v1/user", userRoute);
-
+app.use("/api/v1/product",productRoute);
 // Error handling middleware
 app.use(errorMiddleware);

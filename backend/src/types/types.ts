@@ -10,6 +10,13 @@ export interface NewUserRequestBody{
     gender:"male"|"female",
     dob:Date,
 }
+export interface NewProductRequestBody{
+    category:string,
+    name:string,
+    photo:string,
+    stock:number,
+    price:number,
+}
 export type ControllerType=(
     req:Request,
     res:Response,
