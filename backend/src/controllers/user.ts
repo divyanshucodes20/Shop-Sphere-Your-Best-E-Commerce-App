@@ -6,7 +6,7 @@ export const newUser = async (
   req: Request<{}, {}, NewUserRequestBody>,
   res: Response,
   next: NextFunction
-): Promise<Response | void> => {
+):Promise<any>=>{
   try {
     const { name, email, photo, gender, _id, dob } = req.body;
 
@@ -43,10 +43,6 @@ export const newUser = async (
       message: `Welcome, ${user.name}`,
     });
   } catch (error: any) {
-    // Handle unexpected errors
-    return res.status(500).json({
-      success: false,
-      message: error.message || "Internal Server Error",
-    });
+  return next(error)
   }
 };
