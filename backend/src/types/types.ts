@@ -39,3 +39,25 @@ price?:{
 };
 category?:string
 }
+export type  InvalidateCacheProps={
+    product?:boolean;
+    order?:boolean;
+    admin?:boolean;
+}
+export type OrderItemType={
+    name:string,
+    photo:string,
+    price:number,
+    quantity:number,
+    productId:string
+}
+export interface NewOrderRequestBody{
+  shippingInfo:{};
+  user:string;
+  subTotal:number;
+  tax:number,
+  shippingCharges:number,
+  discount:number,
+  total:number;
+  orderItems:[]
+}
