@@ -12,11 +12,11 @@ const productSchema=new Schema(
         },
         price:{
             type:Number,
-            require:[true,"Product Price is required"]
+            required:[true,"Product Price is required"]
         },
         stock:{
             type:Number,
-            require:[true,"Product Stock is required"]
+            required:[true,"Product Stock is required"]
         },
         category:{
             type:String,

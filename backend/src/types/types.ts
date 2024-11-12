@@ -3,17 +3,17 @@ import { NextFunction, Request, Response } from "express";
 
 
 export interface NewUserRequestBody{
-    _id:string,
-    name:string,
-    email:string,
-    gender:"male"|"female",
-    dob:Date,
+    _id:string;
+    name:string;
+    email:string;
+    gender:"male"|"female";
+    dob:Date;
 }
 export interface NewProductRequestBody{
-    category:string,
-    name:string,
-    stock:number,
-    price:number,
+    category:string;
+    name:string;
+    stock:number;
+    price:number;
 }
 export type ControllerType=(
     req:Request,
@@ -23,21 +23,21 @@ export type ControllerType=(
 
 
 export type SearchRequestQuery={
-    search?:string,
-    price?:string,
-    category?:string,
-    sort?:string,
-    page?:string
+    search?:string;
+    price?:string;
+    category?:string;
+    sort?:string;
+    page?:string;
 }
 export interface BaseQueryType{
 name?:{
-    $regex:string,
-    $options:"i"
+    $regex:string;
+    $options:"i";
 };
 price?:{
-    $lte:number,
+    $lte:number;
 };
-category?:string
+category?:string;
 }
 export type  InvalidateCacheProps={
     product?:boolean;
@@ -45,11 +45,18 @@ export type  InvalidateCacheProps={
     admin?:boolean;
 }
 export type OrderItemType={
-    name:string,
-    photo:string,
-    price:number,
-    quantity:number,
-    productId:string
+    name:string;
+    photo:string;
+    price:number;
+    quantity:number;
+    productId:string;
+}
+export type ShippingInfoType={
+    address:string;
+    city:string;
+    state:string;
+    country:string;
+    pinCode:number;
 }
 export interface NewOrderRequestBody{
   shippingInfo:{};
@@ -59,5 +66,5 @@ export interface NewOrderRequestBody{
   shippingCharges:number,
   discount:number,
   total:number;
-  orderItems:[]
+  orderItems:OrderItemType[]
 }
