@@ -9,6 +9,7 @@ import connectDB from "./db/index.js";
 import { errorMiddleware } from "./middlewares/error.js";
 import NodeCache from "node-cache";
 import morgan from "morgan"
+import Stripe from "stripe";
 
 dotenv.config({
     path:"./.env"
@@ -31,7 +32,8 @@ connectDB()
         console.error("Failed to connect to MongoDB", error);
         process.exit(1); // Exit the application
     });
-
+export const stripeKey=process.env.STRIPE_KEY||""
+export const stripe=new Stripe(stripeKey)
 
 export const myCache=new NodeCache()
 // Root endpoint

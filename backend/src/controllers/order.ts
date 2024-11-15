@@ -25,7 +25,7 @@ export const newOrder=TryCatch(
         total  
     })
     await reduceStock(orderItems)
-    await invalidateCache({
+    invalidateCache({
         product:true,
         order:true,
         admin:true,
