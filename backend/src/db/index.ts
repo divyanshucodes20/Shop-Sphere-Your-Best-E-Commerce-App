@@ -15,7 +15,7 @@ const connectDB = async () => {
 
 export default connectDB;
 
-export const invalidateCache=async({product,admin,order,userId,orderId,productId}:InvalidateCacheProps)=>{
+export const invalidateCache=async({product,admin,order,userId,orderId,productId,coupon}:InvalidateCacheProps)=>{
 if(product){
     const productKeys:string[]=["latest-products","categories","admin-products"]
     if(typeof productId==="string"){
@@ -33,6 +33,10 @@ if(admin){
 if(order){
 const orderKeys:string[]=["all-orders",`my-orders-${userId}`,`order-${orderId}`]
 myCache.del(orderKeys)
+}
+if(coupon){
+    const couponKeys:string[]=["all-coupons"]
+    myCache.del(couponKeys)
 }
 }
 export const reduceStock=async(orderItems:OrderItemType[])=>{

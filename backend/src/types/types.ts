@@ -46,6 +46,7 @@ export type  InvalidateCacheProps={
     userId?:string;
     orderId?:string;
     productId?:string|string[];
+    coupon?:boolean;
 }
 export type OrderItemType={
     name:string;
