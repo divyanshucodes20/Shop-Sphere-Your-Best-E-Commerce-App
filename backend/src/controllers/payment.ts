@@ -1,5 +1,5 @@
 import { myCache } from "../app.js";
-import { invalidateCache } from "../db/index.js";
+import { invalidateCache } from "../utils/features.js";
 import { TryCatch } from "../middlewares/error.js";
 import { Coupon } from "../models/coupon.js";
 import ErrorHandler from "../utils/utility-class.js";
