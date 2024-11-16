@@ -30,6 +30,7 @@ const userSchema=new Schema(
         },
         photo:{
             type:String,
+            required:[true,"Please add Photo"]
         },
         role:{
             type:String,
