@@ -10,6 +10,7 @@ import { errorMiddleware } from "./middlewares/error.js";
 import NodeCache from "node-cache";
 import morgan from "morgan"
 import Stripe from "stripe";
+import cors from "cors"
 
 dotenv.config({
     path:"./.env"
@@ -18,6 +19,7 @@ dotenv.config({
 const app = express();
 app.use(express.json());
 app.use(morgan("dev"))
+app.use(cors())
 
 const port = process.env.PORT || 3000;
 

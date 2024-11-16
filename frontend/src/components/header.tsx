@@ -1,7 +1,7 @@
 import { useState } from "react"
 import { FaSearch, FaShoppingBag, FaSign, FaSignOutAlt, FaUser } from "react-icons/fa"
 import { Link } from "react-router-dom"
-const user={_id:"sdshd",role:"user"}
+const user={_id:"",role:"user"}
 const Header = () => {
     const [isOpen, setIsOpen] = useState<boolean>(false);
     const logOutHandler=()=>{
