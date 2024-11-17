@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { FaSearch, FaShoppingBag, FaSign, FaSignOutAlt, FaUser } from "react-icons/fa"
+import { FaSearch, FaShoppingBag, FaSignOutAlt, FaUser } from "react-icons/fa"
 import { Link } from "react-router-dom"
 import { User } from "../types/types"
 import { signOut } from "firebase/auth"
