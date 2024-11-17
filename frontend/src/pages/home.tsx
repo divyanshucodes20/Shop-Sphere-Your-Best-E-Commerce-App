@@ -1,14 +1,14 @@
 import toast from "react-hot-toast";
+import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import { Skeleton } from "../components/loader";
 import ProductCard from "../components/product-card";
 import { useLatestProductsQuery } from "../redux/api/productAPI";
-import { CartItem } from "../types/types";
-import { useDispatch } from "react-redux";
 import { addToCart } from "../redux/reducer/cartReducer";
+import { CartItem } from "../types/types";
 
 const Home = () => {
-  const dispatch = useDispatch(); // Use hook at the component level
+  const dispatch = useDispatch();
   const { data, isLoading, isError } = useLatestProductsQuery("");
 
   const addToCartHandler = (cartItem: CartItem) => {

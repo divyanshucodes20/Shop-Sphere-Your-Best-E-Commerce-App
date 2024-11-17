@@ -1,12 +1,15 @@
 import { useState } from "react"
 import ProductCard from "../components/product-card"
-import { useCategoriesQuery, useSearchProductsQuery } from "../redux/api/productApi"
+import { useCategoriesQuery, useSearchProductsQuery } from "../redux/api/productAPI"
 import { CustomError } from "../types/api-types"
 import toast from "react-hot-toast"
 import { Skeleton } from "../components/loader"
+import { useDispatch } from "react-redux"
+import { addToCart } from "../redux/reducer/cartReducer"
+import { CartItem } from "../types/types"
 
 const Search = () => {
-
+const dispatch=useDispatch()
 const {data:categoriesResponse,isLoading:loadingCategories,isError,error}=useCategoriesQuery("")
 
 
@@ -19,7 +22,14 @@ const {data:categoriesResponse,isLoading:loadingCategories,isError,error}=useCat
  const {isLoading:productLoading,data:searchedData,isError:productIsError,error:productError
  }=useSearchProductsQuery({search,sort,category,page,price:maxPrice})
 
-  const addToCardHandler=()=>{}
+ const addToCartHandler = (cartItem: CartItem) => {
+  if (cartItem.stock < 1) {
+    toast.error("Item is Out of Stock");
+    return;
+  }
+  dispatch(addToCart(cartItem));
+  toast.success(`${cartItem.name} added to cart`);
+};
   const isNextPage=page<4;
   const isPrevPage=page>1;
 
@@ -76,7 +86,7 @@ const {data:categoriesResponse,isLoading:loadingCategories,isError,error}=useCat
                 name={i.name}
                 price={i.price}
                 stock={i.stock}
-                handler={addToCardHandler}
+                handler={addToCartHandler}
                 photo={i.photo}
               />
             ))}

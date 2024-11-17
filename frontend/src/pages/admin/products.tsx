@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { Column } from "react-table";
 import AdminSidebar from "../../components/admin/AdminSidebar";
 import TableHOC from "../../components/admin/TableHOC";
-import { useAllProductsQuery } from "../../redux/api/productApi";
+import { useAllProductsQuery } from "../../redux/api/productAPI";
 import { server } from "../../redux/store";
 import toast from "react-hot-toast";
 import { CustomError } from "../../types/api-types";

@@ -4,11 +4,11 @@ import { AllProductsResponse, CategoriesResponse, DeleteProductRequest, MessageR
 
 
 export const prodctAPI=createApi({reducerPath:"prodcuctApi",baseQuery:fetchBaseQuery({baseUrl:`${import.meta.env.VITE_SERVER}/api/v1/product/`}),
-tagTypes:["product"],
+tagTypes:["product","allProducts"],
 endpoints:(builder)=>({
     latestProducts:builder.query<AllProductsResponse,string>({query:()=>"latest",providesTags:["product"]}),
 
-    allProducts:builder.query<AllProductsResponse,string>({query:(id)=>`admin-products?id=${id}`,providesTags:["product"]}),
+    allProducts:builder.query<AllProductsResponse,string>({query:(id)=>`admin-products?id=${id}`,providesTags:["product","allProducts"]}),
 
     categories:builder.query<CategoriesResponse,string>({query:()=>`categories`,providesTags:["product"]}),
 
@@ -21,7 +21,7 @@ endpoints:(builder)=>({
         
         return base;
     },
-    providesTags:["product"]
+    providesTags:["product","allProducts"]
 }),
     productDetails:builder.query<ProductResponse,string>({
     query:(id)=>`${id}`,
@@ -40,14 +40,14 @@ updateProduct:builder.mutation<MessageResponse,UpdateProductRequest>({
         method:"PUT",
         body:formData
     }),
-    invalidatesTags:["product"]
+    invalidatesTags:["product","allProducts"]
 }),
 deleteProduct:builder.mutation<MessageResponse,DeleteProductRequest>({
     query:({productId,userId})=>({
         url:`${productId}?id=${userId}`,
         method:"DELETE"
     }),
-    invalidatesTags:["product"]
+    invalidatesTags:["allProducts"]
 })
 })
 })
