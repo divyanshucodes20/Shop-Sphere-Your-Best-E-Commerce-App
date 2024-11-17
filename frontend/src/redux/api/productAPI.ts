@@ -1,5 +1,5 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react"
-import { AllProductsResponse, CategoriesResponse, MessageResponse, NewProductRequest, SearchProductsRequest, SearchProductsResponse } from "../../types/api-types"
+import { AllProductsResponse, CategoriesResponse, DeleteProductRequest, MessageResponse, NewProductRequest, ProductResponse, SearchProductsRequest, SearchProductsResponse, UpdateProductRequest } from "../../types/api-types"
 
 
 
@@ -23,6 +23,10 @@ endpoints:(builder)=>({
     },
     providesTags:["product"]
 }),
+    productDetails:builder.query<ProductResponse,string>({
+    query:(id)=>`${id}`,
+    providesTags:["product"]
+    }),
     newProduct:builder.mutation<MessageResponse,NewProductRequest>({query:({formData,id})=>({
         url: `new?id=${id}`,
         method: "POST",
@@ -30,8 +34,23 @@ endpoints:(builder)=>({
     }),
     invalidatesTags:["product"]
 }),
+updateProduct:builder.mutation<MessageResponse,UpdateProductRequest>({
+    query:({userId,productId,formData})=>({
+        url:`${productId}?id=${userId}`,
+        method:"PUT",
+        body:formData
+    }),
+    invalidatesTags:["product"]
+}),
+deleteProduct:builder.mutation<MessageResponse,DeleteProductRequest>({
+    query:({productId,userId})=>({
+        url:`${productId}?id=${userId}`,
+        method:"DELETE"
+    }),
+    invalidatesTags:["product"]
+})
 })
 })
 
 
-export const { useLatestProductsQuery,useAllProductsQuery,useCategoriesQuery,useSearchProductsQuery,useNewProductMutation }=prodctAPI
+export const { useLatestProductsQuery,useAllProductsQuery,useCategoriesQuery,useSearchProductsQuery,useNewProductMutation,useProductDetailsQuery,useUpdateProductMutation,useDeleteProductMutation }=prodctAPI
