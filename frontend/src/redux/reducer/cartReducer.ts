@@ -49,7 +49,8 @@ export const cartReducer=createSlice({
         },
         discountApply:(state,action:PayloadAction<number>)=>{
             state.discount=action.payload
-        }
+        },
+        
     },
 })
 

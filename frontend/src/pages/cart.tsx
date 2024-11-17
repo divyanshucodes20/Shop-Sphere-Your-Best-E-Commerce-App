@@ -42,22 +42,31 @@ const dispatch=useDispatch();
   };
 
   useEffect(() => {
-    const timeOutId = setTimeout(() => {
-      axios.get(`${server}/api/v1/payment/discount?coupon=${couponCode}`).then((res)=>{
-        dispatch(discountApply(res.data.discount))
-        setIsValidCouponCode(true)})
-      .catch(()=>{
-        dispatch(discountApply(0))
-        setIsValidCouponCode(false);
-      }) 
-    }, 1000);
+    const { token: cancelToken, cancel } = axios.CancelToken.source();
 
+    const timeOutID = setTimeout(() => {
+      axios
+        .get(`${server}/api/v1/payment/discount?coupon=${couponCode}`, {
+          cancelToken,
+        })
+        .then((res) => {
+          dispatch(discountApply(res.data.discount));
+          //dispatch(saveCoupon(couponCode));
+          setIsValidCouponCode(true);
+          dispatch(calculatePrice());
+        })
+        .catch(() => {
+          dispatch(discountApply(0));
+          setIsValidCouponCode(false);
+          dispatch(calculatePrice());
+        });
+    }, 1000);
     return () => {
-      clearTimeout(timeOutId);
-      
+      clearTimeout(timeOutID);
+      cancel();
+      setIsValidCouponCode(false);
     };
   }, [couponCode]);
-
   useEffect(()=>{
    dispatch(calculatePrice())
   },[cartItems])
