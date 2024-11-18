@@ -15,6 +15,8 @@ import ProtectedRoute from './components/protected-route'
 const Search =lazy(()=>import('./pages/search'))
 const Shipping =lazy(()=>import('./pages/shipping'))
 const Orders =lazy(()=>import('./pages/orders'))
+const NotFound =lazy(()=>import('./pages/notFound'))
+const Checkout =lazy(()=>import('./pages/checkout'))
 const OrderDetails =lazy(()=>import('./pages/orderDetails'))
 const Login =lazy(()=>import('./pages/login'))
 const Cart =lazy(()=>import('./pages/cart'))
@@ -73,6 +75,7 @@ useEffect(()=>{
      <Route path='/shipping' element={<Shipping/>}/>
      <Route path='/orders' element={<Orders/>}/>
      <Route path='/orders/:id' element={<OrderDetails/>}/>
+     <Route path='/pay' element={<Checkout/>}/>
      </Route>
       {/*admin routes*/}
      <Route
@@ -99,7 +102,7 @@ useEffect(()=>{
 
  <Route path="/admin/transaction/:id" element={<TransactionManagement />} />
 </Route>
-
+<Route path='*' element={<NotFound/>}/>
  </Routes>
  </Suspense>
  <Toaster position="bottom-center"/>

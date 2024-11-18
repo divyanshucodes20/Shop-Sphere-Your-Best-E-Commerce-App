@@ -4,7 +4,7 @@ import AdminSidebar from "../../../components/admin/AdminSidebar";
 import { useSelector } from "react-redux";
 import { UserReducerInitialState } from "../../../types/reducer-types"
 import { useDeleteProductMutation, useProductDetailsQuery, useUpdateProductMutation } from "../../../redux/api/productAPI";
-import { useNavigate, useParams } from "react-router-dom";
+import { Navigate, useNavigate, useParams } from "react-router-dom";
 import { server } from "../../../redux/store";
 import { Skeleton } from "../../../components/loader";
 import { responseToast } from "../../../utils/features";
@@ -16,7 +16,7 @@ const {user}=useSelector(
 )
 const params=useParams();
 const navigate=useNavigate();
-const {data,isLoading}=useProductDetailsQuery(params.id!)
+const {data,isLoading,isError}=useProductDetailsQuery(params.id!)
 
   
   const {price,name,stock,category,photo}=data?.product ||{
@@ -77,7 +77,9 @@ const {data,isLoading}=useProductDetailsQuery(params.id!)
       setCategoryUpdate(data.product.category)
     }
   },[data])
-
+  if(isError){
+    return <Navigate to={"/404"}/>
+  }
   return (
     <div className="admin-container">
       <AdminSidebar />
