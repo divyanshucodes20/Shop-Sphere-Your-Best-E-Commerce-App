@@ -6,11 +6,16 @@ import { auth } from "../firebase"
 import { useLoginMutation } from "../redux/api/userAPI"
 import { FetchBaseQueryError } from "@reduxjs/toolkit/query/react"
 import { MessageResponse } from "../types/api-types"
+import { useDispatch } from "react-redux"
+import { userExist,userNotExist } from "../redux/reducer/userReducer"
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
     const [gender,setGender]=useState("")
     const [date,setDate]=useState("")  
     const [login] = useLoginMutation()
+    const dispatch=useDispatch()
+    const navigate = useNavigate();
     const loginHandler=async()=>{
         try {
           const provider=new GoogleAuthProvider();
@@ -27,16 +32,30 @@ const Login = () => {
 
           if("data" in res){
              if (res.data) {
+              dispatch(
+                userExist({
+                  name: user.displayName!,
+                  email: user.email!,
+                  photo: user.photoURL!,
+                  gender,
+                  role: "user",
+                  dob: date,
+                  _id: user.uid,
+                })
+              );
                toast.success(res.data.message)
+               navigate("/");
              }
           }
           else{
             const error=res.error as FetchBaseQueryError;
             const message=(error.data as MessageResponse).message
             toast.error(message)
+            dispatch(userNotExist());
           }
         } catch (error) {
           toast.error("Sign-In Failed")
+          dispatch(userNotExist());
         }
     }
   return (
