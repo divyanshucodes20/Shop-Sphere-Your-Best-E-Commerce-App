@@ -5,6 +5,7 @@ import { UserReducerInitialState } from "../../../types/reducer-types";
 import { useNewProductMutation } from "../../../redux/api/productAPI";
 import { responseToast } from "../../../utils/features";
 import { useNavigate } from "react-router-dom";
+import toast from "react-hot-toast";
 
 const NewProduct = () => {
 
@@ -39,7 +40,8 @@ const {user}=useSelector(
   };
   const submitHandler=async(e:FormEvent<HTMLElement>)=>{
    e.preventDefault();
-   if(!name || !price || !stock || !photo ||!category){
+   if(!name || !price ||stock<0 ||!photo ||!category){
+    toast.error("Please fill all the feilds")
     return;
    }
    const formData=new FormData()

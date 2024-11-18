@@ -1,4 +1,4 @@
-import { CartItem, Order, Product, ShippingInfo, User } from "./types";
+import { Bar, CartItem, Line, Order, Pie, Product, ShippingInfo, Stats, User } from "./types";
 
 
 export type CustomError={
@@ -17,7 +17,10 @@ export type UserResponse={
     success:boolean;
     user:User
 }
-
+export type AllUsersResponse={
+    success:boolean;
+    users:User[]
+}
 export type AllProductsResponse={
     success:boolean;
     products:Product[]
@@ -77,4 +80,27 @@ export type NewOrderRequest={
     success:boolean;
     order:Order;
  }
+ export type DeleteUserRequest={
+    userId:string;
+    adminUserId:string;
+ }
+ export type StatsResponse={
+    success:boolean;
+    stats:Stats;
+ }
+ export type PieResponse = {
+    success: boolean;
+    charts: Pie;
+  };
+  
+  export type BarResponse = {
+    success: boolean;
+    charts: Bar;
+  };
+  
+  export type LineResponse = {
+    success: boolean;
+    charts: Line;
+  };
 
+ 
