@@ -1,7 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { CartReducerInitialState } from "../../types/reducer-types";
-import { CartItem,ShippingInfo } from "../../types/types";
-import { actions } from "react-table";
+import { CartItem, ShippingInfo } from "../../types/types";
 
 const initialState:CartReducerInitialState={
     loading:false,
@@ -32,8 +31,8 @@ export const cartReducer=createSlice({
             }
             else{
             state.cartItems.push(action.payload);
-            state.loading=false;
             }
+            state.loading=false;
         },
         removeCartItem:(state,action:PayloadAction<string>)=>{
             state.loading=true;
@@ -49,7 +48,8 @@ export const cartReducer=createSlice({
             state.total=state.subTotal+state.tax+state.shippingCharges-state.discount
         },
         discountApply:(state,action:PayloadAction<number>)=>{
-            state.discount=action.payload
+            state.discount = action.payload;
+            state.total = state.subTotal + state.tax + state.shippingCharges - state.discount;
         },
         saveShippingInfo:(state,action:PayloadAction<ShippingInfo>)=>{
             state.shippingInfo=action.payload
