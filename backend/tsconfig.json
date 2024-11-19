@@ -8,5 +8,6 @@
     "esModuleInterop": true,                      // Emit additional JS to support importing CommonJS modules.
     "forceConsistentCasingInFileNames": true,     // Ensure imports respect file name casing.
     "strict": true,                               // Enable all strict type-checking options.
+    "noEmitOnError": false                        // Allow emitting JavaScript files even if TypeScript has errors.
   }
 }
