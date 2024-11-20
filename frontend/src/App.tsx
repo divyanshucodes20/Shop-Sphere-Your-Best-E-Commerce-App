@@ -13,7 +13,7 @@ import { userExist, userNotExist } from './redux/reducer/userReducer'
 
 import ProtectedRoute from './components/protected-route'
 
-import { getUser } from "./redux/api/userAPI.js"
+import { getUser } from "./redux/api/userAPI"
 
 import { UserReducerInitialState } from './types/reducer-types'
 const Search =lazy(()=>import('./pages/search'))
