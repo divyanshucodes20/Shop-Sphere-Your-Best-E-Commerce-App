@@ -5,11 +5,13 @@ import AdminSidebar from "../../components/admin/AdminSidebar";
 import TableHOC from "../../components/admin/TableHOC";
 import { useSelector } from "react-redux";
 import { RootState } from "../../redux/store";
-import { useAllUsersQuery, useDeleteUserMutation } from "../../redux/api/userAPI";
+// @ts-ignore
+import { useAllUsersQuery, useDeleteUserMutation } from '../../redux/api/userAPI';
 import { CustomError } from "../../types/api-types";
 import toast from "react-hot-toast";
 import { Skeleton } from "../../components/loader";
 import { responseToast } from "../../utils/features";
+import { User } from "../../types/types";
 
 interface DataType {
   avatar: ReactElement;
@@ -71,7 +73,7 @@ const Customers = () => {
   useEffect(()=>{
    if(data)
     setRows(
-  data.users.map((i)=>({
+  data.users.map((i:User)=>({
     avatar:<img style={{
       borderRadius:"50%",
     }} src={i.photo} alt={i.name}
