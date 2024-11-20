@@ -1,20 +1,21 @@
-import { lazy,Suspense,useEffect } from 'react'
-import { BrowserRouter as Router,Routes,Route } from 'react-router-dom'
-import {Toaster} from "react-hot-toast"
+import { lazy, Suspense, useEffect } from 'react'
+import { Toaster } from "react-hot-toast"
+import { Route, BrowserRouter as Router, Routes } from 'react-router-dom'
 
 
-import Loader from './components/loader'
-import Header from './components/header'
 import { onAuthStateChanged } from 'firebase/auth'
-import { auth } from './firebase'
 import { useDispatch, useSelector } from 'react-redux'
+import Header from './components/header'
+import Loader from './components/loader'
+import { auth } from './firebase'
 
 import { userExist, userNotExist } from './redux/reducer/userReducer'
 
-// @ts-ignore
-import { getUser } from "./redux/api/userAPI";
-import { UserReducerInitialState } from './types/reducer-types'
 import ProtectedRoute from './components/protected-route'
+
+// @ts-ignore
+import { getUser } from "./redux/api/userAPI"
+import { UserReducerInitialState } from './types/reducer-types'
 const Search =lazy(()=>import('./pages/search'))
 const Shipping =lazy(()=>import('./pages/shipping'))
 const Orders =lazy(()=>import('./pages/orders'))
@@ -48,9 +49,14 @@ const { user,loading }=useSelector((state:{userReducer:UserReducerInitialState})
   
 const dispath=useDispatch();
 useEffect(()=>{
+  
+// @ts-ignore
   onAuthStateChanged(auth,async(user)=>{
-    if(user){
+    if(user){  
+// @ts-ignore
       const data=await getUser(user.uid)
+      
+// @ts-ignore
       dispath(userExist(data.user))
     }
     else{
