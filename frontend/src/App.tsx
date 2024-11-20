@@ -11,7 +11,7 @@ import { useDispatch, useSelector } from 'react-redux'
 
 import { userExist, userNotExist } from './redux/reducer/userReducer'
 // @ts-ignore
-import { getUser } from './redux/api/userAPI'
+import { getUser } from "./redux/api/userAPI"
 import { UserReducerInitialState } from './types/reducer-types'
 import ProtectedRoute from './components/protected-route'
 const Search =lazy(()=>import('./pages/search'))
