@@ -38,7 +38,7 @@ function TableHOC<T extends Object>(
       previousPage,
       canNextPage,
       canPreviousPage,
-    } = useTable(options, useSortBy, usePagination);
+    } = useTable(options as unknown as TableOptions<object>, useSortBy, usePagination);
 
     return (
       <div className={containerClassname}>
