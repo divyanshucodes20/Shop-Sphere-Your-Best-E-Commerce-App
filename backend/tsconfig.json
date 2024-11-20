@@ -1,17 +1,12 @@
 {
   "compilerOptions": {
-    "target": "ES2020",
-    "module": "NodeNext",
-    "rootDir": "src",
-    "moduleResolution": "NodeNext",
-    "outDir": "dist",
-    "esModuleInterop": true,
-    "forceConsistentCasingInFileNames": true,
-    "strict": true,
-    "noEmitOnError": false,
-    "strictNullChecks": false,            // Relax null checks
-    "noImplicitAny": false,               // Relax implicit 'any' type
-    "skipLibCheck": true,                 // Skip type checking of declaration files
-    "resolveJsonModule": true             // Resolve .json files as modules
+    "target": "ES2020",                           // Set the JavaScript language version.
+    "module": "NodeNext",                         // Specify what module code is generated.
+    "rootDir": "src",                             // Specify the root folder within your source files.
+    "moduleResolution": "NodeNext",                // Specify how TypeScript resolves modules.
+    "outDir": "dist",                             // Specify the output folder for all emitted files.
+    "esModuleInterop": true,                      // Emit additional JS to support importing CommonJS modules.
+    "forceConsistentCasingInFileNames": true,     // Ensure imports respect file name casing.
+    "strict": true,                               // Enable all strict type-checking options.
   }
 }

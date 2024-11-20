@@ -55,4 +55,5 @@ app.use("/api/v1/dashboard",dashboardRoute)
 app.use("/uploads",express.static("uploads"))
 
 // Error handling middleware
+// @ts-ignore
 app.use(errorMiddleware);

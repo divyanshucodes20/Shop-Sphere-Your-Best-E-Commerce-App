@@ -3,7 +3,7 @@ import { TryCatch } from "../middlewares/error.js";
 import { Order } from "../models/order.js";
 import { Product } from "../models/product.js";
 import { User } from "../models/user.js";
-import { calculatePercentage,  getInventeries,getChartData } from "../utils/features.js";
+import { calculatePercentage,  getInventeries,getChartData, MyDocument } from "../utils/features.js";
 
 export const getDashboardStats=TryCatch((async(req,res,next)=>{
 let stats={};
@@ -294,8 +294,10 @@ else{
       twelveMonthOrdersPromise,
     ]);
 
-    const productCounts = getChartData({ length: 6, today, docArr: products });
+// @ts-ignore
+    const productCounts = getChartData({ length: 6,  docArr: products,today });
     const usersCounts = getChartData({ length: 6, today, docArr: users });
+    // @ts-ignore
     const ordersCounts = getChartData({ length: 12, today, docArr: orders });
 
     charts = {
@@ -344,13 +346,13 @@ export const getLineStats=TryCatch((async(req,res,next)=>{
           twelveMonthUsersPromise,
           twelveMonthOrdersPromise
         ]);
-    
+    // @ts-ignore
         const productCounts = getChartData({ length: 12, today, docArr: products });
         
         const usersCounts = getChartData({ length: 12, today, docArr: users });
-        
+        // @ts-ignore
         const discount = getChartData({ length: 12, today, docArr: orders,property:"discount" });
-    
+    // @ts-ignore
         const revenue = getChartData({ length: 12, today, docArr: orders,property:"total" });
 
         charts = {
