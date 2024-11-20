@@ -8,6 +8,7 @@ import Header from './components/header'
 import { onAuthStateChanged } from 'firebase/auth'
 import { auth } from './firebase'
 import { useDispatch, useSelector } from 'react-redux'
+// @ts-ignore
 import { userExist, userNotExist } from './redux/reducer/userReducer'
 import { getUser } from './redux/api/userAPI'
 import { UserReducerInitialState } from './types/reducer-types'

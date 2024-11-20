@@ -1,5 +1,6 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { prodctAPI } from "./api/productAPI";
+// @ts-ignore
 import { userAPI } from "./api/userAPI";
 import { userReducer } from "./reducer/userReducer";
 import { cartReducer } from "./reducer/cartReducer";
