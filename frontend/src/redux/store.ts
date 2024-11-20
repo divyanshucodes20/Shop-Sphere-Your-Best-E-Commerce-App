@@ -11,6 +11,7 @@ export const server=import.meta.env.VITE_SERVER
 
 export const store=configureStore({
     reducer:{
+        // @ts-ignore
     [userAPI.reducerPath]:userAPI.reducer,
     [prodctAPI.reducerPath]:prodctAPI.reducer,
     [orderAPI.reducerPath]:orderAPI.reducer,
@@ -18,6 +19,7 @@ export const store=configureStore({
     [userReducer.name]:userReducer.reducer,
     [cartReducer.name]:cartReducer.reducer,
     },
+    // @ts-ignore
     middleware: (mid) => mid().concat(userAPI.middleware,prodctAPI.middleware,orderAPI.middleware,dashboardAPI.middleware)
 })
 export type RootState = ReturnType<typeof store.getState>;
