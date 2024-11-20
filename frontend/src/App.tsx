@@ -14,7 +14,10 @@ import { userExist, userNotExist } from './redux/reducer/userReducer'
 import ProtectedRoute from './components/protected-route'
 
 // @ts-ignore
+// @ts-ignore
+// @ts-ignore
 import { getUser } from "./redux/api/userAPI"
+// @ts-ignore
 import { UserReducerInitialState } from './types/reducer-types'
 const Search =lazy(()=>import('./pages/search'))
 const Shipping =lazy(()=>import('./pages/shipping'))
