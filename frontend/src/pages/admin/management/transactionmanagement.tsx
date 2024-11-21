@@ -9,8 +9,9 @@ import {
   useUpdateOrderMutation,
 } from "../../../redux/api/orderAPI";
 import { Order, OrderItem } from "../../../types/types";
-import { responseToast,transformImage} from "../../../utils/features";
+import { responseToast} from "../../../utils/features";
 import { UserReducerInitialState } from "../../../types/reducer-types";
+import { server } from "../../../redux/store";
 
 const defaultData: Order = {
   shippingInfo: {
@@ -152,7 +153,7 @@ const ProductCard = ({
   productId,
 }: OrderItem) => (
   <div className="transaction-product-card">
-    <img src={transformImage(photo)} alt={name} />
+    <img src={`${server}/${photo}`} alt={name} />
     <Link to={`/product/${productId}`}>{name}</Link>
     <span>
       ₹{price} X {quantity} = ₹{price * quantity}
